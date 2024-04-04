@@ -1,0 +1,6 @@
+[package]
+name = "problem_3"
+version = "0.1.0"
+edition = "2018"
+description = "Solution for LeetCode Problem 3, initially attempted in 2024."
+license = "MIT"
