@@ -63,3 +63,26 @@ if ! grep -q "problems/problem_$new_num" Cargo.toml; then
 fi
 
 echo "New problem 'problem_$new_num' has been created and added to the workspace."
+
+# Ask the user if they want to open the new problem now
+read -p "Do you want to open the new problem now? [Y/n] " -n 1 -r
+echo    # Move to a new line
+
+if [[ $REPLY =~ ^[Yy]$ ]] || [[ -z $REPLY ]]; then
+    # Check if the EDITOR environment variable is set and not empty
+    if [ -z "$EDITOR" ]; then
+        echo "The EDITOR environment variable is not set. Please set it to your preferred editor."
+        exit 1
+    else
+        if [ -z "$TERMINAL" ]; then
+            echo "The TERMINAL environment variable is not set. Please set it to your preferred terminal."
+            exit 1
+        else
+            # Use the editor defined in the EDITOR environment variable to open the files
+            $TERMINAL -e $EDITOR "$new_problem_dir/src/main.rs" "$new_problem_dir/src/solution.rs" &
+        fi
+    fi
+elif [[ $REPLY =~ ^[Nn]$ ]]; then
+    # Exit if the user inputs 'n'
+    exit 0
+fi
