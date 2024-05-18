@@ -1,6 +1,7 @@
 [workspace]
 
 members = [
+    "problems/problem_10",
     "problems/problem_9",
     "problems/problem_8",
     "problems/problem_7",
